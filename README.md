@@ -1,4 +1,4 @@
-<h1 align="center">MARS Studio (InsightX Edition)</h1>
+<h1 align="center">MARS Studio</h1>
 
 <p align="center">
   <strong>A modernized, full-stack IDE for MIPS Assembly and Computer Architecture education.</strong>
@@ -21,7 +21,8 @@ Write C code, compile it, and watch the assembly execute in real-time.
 
 ### 2. InsightX Pipeline Visualization Suite
 A dedicated sub-system to visually analyze superscalar execution and hardware behavior cycle-by-cycle.
-* **Interactive Gantt Chart**: Maps out the execution timeline of instructions. See exactly which pipeline stage (IF, ID, EX, MEM, WB) an instruction occupies during any clock cycle.
+* **Pipeline Visualizer**: A complete 5-stage pipeline model (IF, ID, EX, MEM, WB) that renders the execution flow in real-time.
+* **Interactive Gantt Chart**: Maps out the execution timeline of instructions. See exactly which pipeline stage an instruction occupies during any clock cycle.
 * **Animated Datapath**: A cycle-synchronized, animated block diagram of the CPU routing data as instructions execute.
 * **Hazard Simulation**: Automatically detects Read-After-Write (RAW) data hazards and visually renders pipeline stalls (`STL`) and bubbles.
 
