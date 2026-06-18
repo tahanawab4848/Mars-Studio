@@ -1,6 +1,12 @@
 <h1 align="center">MARS Studio</h1>
 
+
+
 <p align="center">
+  
+  ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg) 
+  
+  <br/>
   <strong>A modernized, full-stack IDE for MIPS Assembly and Computer Architecture education.</strong>
 </p>
 
