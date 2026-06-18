@@ -1,4 +1,5 @@
 package mars.tools;
+import java.io.IOException;
 
 import mars.insightx.*;
 import mars.insightx.ui.*;
@@ -400,6 +401,19 @@ public class InsightXTool implements MarsTool {
         b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         return b;
     }
+
+    private void stopFileWatcher() {
+    // Implementation to stop file watcher
+    // If fileWatcher is a WatchService or similar:
+    if (fileWatcher != null) {
+        try {
+            fileWatcher.close();
+        } catch (IOException e) {
+            // Log or ignore
+        }
+        fileWatcher = null;
+    }
+}
 
     private static void styleTextField(JTextField tf) {
         tf.setBackground(new Color(0x1A1A2E));
