@@ -379,7 +379,7 @@ public class RegistersWindow extends JPanel implements Observer {
         MyTippedJTable(RegTableModel m) {
             super(m);
             this.setRowSelectionAllowed(true); // highlights background color of entire row
-            this.setSelectionBackground(Color.GREEN);
+            this.setSelectionBackground(mars.venus.ThemeManager.selectionBackground());
         }
 
         private String[] regToolTips = {

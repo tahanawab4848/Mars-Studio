@@ -25,10 +25,13 @@ public class SettingsThemeAction extends GuiAction {
             } else if ("Light".equals(themeName)) {
                 UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
             }
-            SwingUtilities.updateComponentTreeUI(Globals.getGui());
+            // Persist the selection first so ThemeManager.isDark() returns the
+            // correct value when patchComponentTree() inspects it.
             Globals.getSettings().setTheme(themeName);
+            // Update all open windows AND patch hard-coded colours.
+            ThemeManager.applyThemeToAllWindows();
         } catch (Exception ex) {
-            System.err.println("Failed to initialize theme.");
+            System.err.println("Failed to apply theme: " + ex.getMessage());
         }
     }
 }

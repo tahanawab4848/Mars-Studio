@@ -97,7 +97,7 @@ public class Coprocessor1Window extends JPanel implements ActionListener, Observ
         for (int i = 0; i < numFlags; i++) {
             conditionFlagCheckBox[i] = new JCheckBox(Integer.toString(i));
             conditionFlagCheckBox[i].addActionListener(this);
-            conditionFlagCheckBox[i].setBackground(Color.WHITE);
+            conditionFlagCheckBox[i].setBackground(mars.venus.ThemeManager.checkBoxBackground());
             conditionFlagCheckBox[i].setToolTipText("checked == 1, unchecked == 0");
             checksPane.add(conditionFlagCheckBox[i]);
         }
@@ -502,7 +502,7 @@ public class Coprocessor1Window extends JPanel implements ActionListener, Observ
         MyTippedJTable(RegTableModel m) {
             super(m);
             this.setRowSelectionAllowed(true); // highlights background color of entire row
-            this.setSelectionBackground(Color.GREEN);
+            this.setSelectionBackground(mars.venus.ThemeManager.selectionBackground());
         }
 
         private String[] regToolTips = {

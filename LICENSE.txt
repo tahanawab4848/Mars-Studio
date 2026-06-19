@@ -1,6 +1,8 @@
-Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
+Copyright (c) 2024-2026 Muhammad Taha Nawab
+Copyright (c) 2003-2013 Pete Sanderson and Kenneth Vollmar
 
-Developed by Pete Sanderson (psanderson@otterbein.edu)
+Developed by Muhammad Taha Nawab (https://github.com/tahanawab4848)
+Original MARS developed by Pete Sanderson (psanderson@otterbein.edu)
 and Kenneth Vollmar (kenvollmar@missouristate.edu)
 
 Permission is hereby granted, free of charge, to any person obtaining 

@@ -20,13 +20,15 @@ import java.io.File;
  */
 public class CCompilerSettingsDialog extends JDialog {
 
-    private static final Color BG       = new Color(0x1E1E2E);
-    private static final Color PANEL_BG = new Color(0x252537);
-    private static final Color TEXT     = new Color(0xCDD6F4);
-    private static final Color ACCENT   = new Color(0x89B4FA);
-    private static final Color BORDER   = new Color(0x45475A);
-    private static final Color SUCCESS  = new Color(0xA6E3A1);
-    private static final Color ERROR    = new Color(0xF38BA8);
+    // Colours are resolved at method-call time via ThemeManager so the dialog
+    // automatically adapts to the active FlatLaf Look & Feel.
+    private static Color bg()      { return mars.venus.ThemeManager.panelBackground(); }
+    private static Color text()    { return mars.venus.ThemeManager.defaultForeground(); }
+    private static Color accent()  { return mars.venus.ThemeManager.accent(); }
+    private static Color border()  { return mars.venus.ThemeManager.border(); }
+    private static Color success() { return mars.venus.ThemeManager.isDark() ? new Color(0xA6E3A1) : new Color(0x2E7D32); }
+    private static Color error()   { return mars.venus.ThemeManager.isDark() ? new Color(0xF38BA8) : new Color(0xC62828); }
+    private static Color fieldBg() { return mars.venus.ThemeManager.editableBackground(); }
 
     // ── GUI fields ─────────────────────────────────────────────────────
     private JComboBox<String> typeCombo;
@@ -39,8 +41,8 @@ public class CCompilerSettingsDialog extends JDialog {
 
     public CCompilerSettingsDialog(Frame parent) {
         super(parent, "C Compiler Settings", true);
-        setBackground(BG);
-        getContentPane().setBackground(BG);
+        setBackground(bg());
+        getContentPane().setBackground(bg());
         buildUI();
         populateFromConfig();
         pack();
@@ -51,7 +53,7 @@ public class CCompilerSettingsDialog extends JDialog {
     // ── UI ─────────────────────────────────────────────────────────────
     private void buildUI() {
         JPanel root = new JPanel(new BorderLayout(8, 8));
-        root.setBackground(BG);
+        root.setBackground(bg());
         root.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
 
         root.add(buildFormPanel(), BorderLayout.CENTER);
@@ -61,7 +63,7 @@ public class CCompilerSettingsDialog extends JDialog {
 
     private JPanel buildFormPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(BG);
+        panel.setBackground(bg());
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(4, 4, 4, 4);
         gc.fill   = GridBagConstraints.HORIZONTAL;
@@ -78,7 +80,7 @@ public class CCompilerSettingsDialog extends JDialog {
         addLabel(panel, gc, row, "Compiler Path:");
         pathField = styledField("Leave empty for auto-detect from PATH");
         JPanel pathRow = new JPanel(new BorderLayout(4, 0));
-        pathRow.setBackground(BG);
+        pathRow.setBackground(bg());
         pathRow.add(pathField, BorderLayout.CENTER);
         JButton browseBtn = styledBtn("Browse…");
         browseBtn.addActionListener(e -> {
@@ -100,7 +102,7 @@ public class CCompilerSettingsDialog extends JDialog {
         addLabel(panel, gc, row, "Temp Directory:");
         tempDirField = styledField(System.getProperty("java.io.tmpdir"));
         JPanel tempRow = new JPanel(new BorderLayout(4, 0));
-        tempRow.setBackground(BG);
+        tempRow.setBackground(bg());
         tempRow.add(tempDirField, BorderLayout.CENTER);
         JButton tempBrowse = styledBtn("Browse…");
         tempBrowse.addActionListener(e -> {
@@ -122,7 +124,7 @@ public class CCompilerSettingsDialog extends JDialog {
         // ── Test area ──────────────────────────────────────────────────
         gc.gridx = 0; gc.gridy = row; gc.gridwidth = 2;
         JButton testBtn = styledBtn("[Test] Compiler");
-        testBtn.setForeground(ACCENT);
+        testBtn.setForeground(accent());
         testBtn.addActionListener(e -> testCompiler());
         panel.add(testBtn, gc);
         row++;
@@ -130,16 +132,15 @@ public class CCompilerSettingsDialog extends JDialog {
         gc.gridx = 0; gc.gridy = row; gc.gridwidth = 2;
         gc.weightx = 1; gc.weighty = 1; gc.fill = GridBagConstraints.BOTH;
         testResultArea = new JTextArea(5, 0);
-        testResultArea.setBackground(new Color(0x11111B));
-        testResultArea.setForeground(TEXT);
+        testResultArea.setBackground(mars.venus.ThemeManager.readOnlyBackground());
+        testResultArea.setForeground(text());
         testResultArea.setFont(new Font("Monospaced", Font.PLAIN, 11));
         testResultArea.setEditable(false);
         testResultArea.setBorder(BorderFactory.createEmptyBorder(4, 6, 4, 6));
         JScrollPane testScroll = new JScrollPane(testResultArea);
-        testScroll.setBorder(BorderFactory.createLineBorder(BORDER, 1));
         TitledBorder tb = BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(BORDER), "Test Result");
-        tb.setTitleColor(ACCENT);
+            BorderFactory.createLineBorder(border()), "Test Result");
+        tb.setTitleColor(accent());
         testScroll.setBorder(tb);
         panel.add(testScroll, gc);
 
@@ -148,21 +149,21 @@ public class CCompilerSettingsDialog extends JDialog {
 
     private JPanel buildButtonPanel() {
         JPanel p = new JPanel(new BorderLayout());
-        p.setBackground(BG);
-        p.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, BORDER));
+        p.setBackground(bg());
+        p.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, border()));
 
         statusLabel = new JLabel(" ");
         statusLabel.setFont(new Font("SansSerif", Font.ITALIC, 12));
-        statusLabel.setForeground(TEXT);
+        statusLabel.setForeground(text());
         statusLabel.setBorder(BorderFactory.createEmptyBorder(4, 6, 4, 6));
 
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.RIGHT, 6, 6));
-        btnRow.setBackground(BG);
+        btnRow.setBackground(bg());
         JButton saveBtn   = styledBtn("Save");
         JButton cancelBtn = styledBtn("Cancel");
         JButton autoBtn   = styledBtn("Auto-detect Now");
 
-        saveBtn.setForeground(SUCCESS);
+        saveBtn.setForeground(success());
         saveBtn.addActionListener(e -> saveAndClose());
         cancelBtn.addActionListener(e -> dispose());
         autoBtn.addActionListener(e -> autoDetect());
@@ -204,7 +205,7 @@ public class CCompilerSettingsDialog extends JDialog {
         cfg.setTempDir(tempDirField.getText().trim());
         cfg.setTimeoutSeconds((Integer) timeoutSpinner.getValue());
         cfg.save();
-        setStatus("Settings saved.", SUCCESS);
+        setStatus("Settings saved.", success());
         dispose();
     }
 
@@ -215,9 +216,9 @@ public class CCompilerSettingsDialog extends JDialog {
         }
         if (found != null) {
             pathField.setText(found);
-            setStatus("Found: " + found, SUCCESS);
+            setStatus("Found: " + found, success());
         } else {
-            setStatus("No MIPS compiler found on PATH.", ERROR);
+            setStatus("No MIPS compiler found on PATH.", error());
         }
     }
 
@@ -240,11 +241,11 @@ public class CCompilerSettingsDialog extends JDialog {
                     if (out.isSuccess()) {
                         testResultArea.setText("[OK] SUCCESS (" + out.getCompilationTimeMs() + " ms)\n");
                         testResultArea.append("Output: " + out.getGeneratedAsmPath() + "\n");
-                        testResultArea.setForeground(SUCCESS);
+                        testResultArea.setForeground(success());
                     } else {
                         testResultArea.setText("[ERR] FAILED (exit " + out.getExitCode() + ")\n");
                         testResultArea.append(out.getFormattedErrorReport());
-                        testResultArea.setForeground(ERROR);
+                        testResultArea.setForeground(error());
                     }
                 } catch (Exception e) {
                     testResultArea.setText("Error: " + e.getMessage());
@@ -263,7 +264,7 @@ public class CCompilerSettingsDialog extends JDialog {
     private void addLabel(JPanel p, GridBagConstraints gc, int row, String text) {
         gc.gridx = 0; gc.gridy = row; gc.gridwidth = 1; gc.weightx = 0.25;
         JLabel lbl = new JLabel(text);
-        lbl.setForeground(ACCENT);
+        lbl.setForeground(accent());
         lbl.setFont(new Font("SansSerif", Font.PLAIN, 13));
         p.add(lbl, gc);
     }
@@ -275,37 +276,37 @@ public class CCompilerSettingsDialog extends JDialog {
 
     private JTextField styledField(String placeholder) {
         JTextField f = new JTextField();
-        f.setBackground(new Color(0x313147));
-        f.setForeground(TEXT);
-        f.setCaretColor(TEXT);
+        f.setBackground(fieldBg());
+        f.setForeground(text());
+        f.setCaretColor(text());
         f.setFont(new Font("Monospaced", Font.PLAIN, 12));
         f.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER, 1),
+            BorderFactory.createLineBorder(border(), 1),
             BorderFactory.createEmptyBorder(4, 8, 4, 8)));
         return f;
     }
 
     private JButton styledBtn(String text) {
         JButton b = new JButton(text);
-        b.setBackground(new Color(0x313147));
-        b.setForeground(TEXT);
+        b.setBackground(fieldBg());
+        b.setForeground(this.text());
         b.setFocusPainted(false);
         b.setFont(new Font("SansSerif", Font.PLAIN, 12));
         b.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER, 1),
+            BorderFactory.createLineBorder(border(), 1),
             BorderFactory.createEmptyBorder(5, 12, 5, 12)));
         return b;
     }
 
     private void styleCombo(JComboBox<String> combo) {
-        combo.setBackground(new Color(0x313147));
-        combo.setForeground(TEXT);
+        combo.setBackground(fieldBg());
+        combo.setForeground(text());
         combo.setFont(new Font("SansSerif", Font.PLAIN, 12));
     }
 
     private void styleSpinner(JSpinner spinner) {
-        spinner.setBackground(new Color(0x313147));
-        spinner.setForeground(TEXT);
+        spinner.setBackground(fieldBg());
+        spinner.setForeground(text());
         spinner.setFont(new Font("Monospaced", Font.PLAIN, 12));
     }
 }
