@@ -12,9 +12,12 @@
 
 ## 🚀 Overview
 
-MARS Studio is a massive structural expansion over the classic MARS (MIPS Assembler and Runtime Simulator). It transforms the standard 2005 emulator into a **state-of-the-art visual laboratory** for Systems Programming. 
+MARS Studio represents a complete modernization and revitalization of the legacy 2005 MARS (MIPS Assembler and Runtime Simulator). We have transformed a basic, text-heavy MIPS emulator into a **state-of-the-art visual laboratory** for Systems Programming. 
 
-This project bridges the gap between high-level logic and low-level execution by integrating a **C-to-MIPS Cross-Compiler**, advanced **Pipeline Analytics**, and a suite of **Educational Visualizers**.
+Moving far beyond simple assembly execution, MARS Studio bridges the gap between high-level logic and low-level hardware behavior. By integrating a seamless C-to-MIPS cross-compilation workflow, a visually rich 5-stage superscalar datapath animation, and advanced cycle-by-cycle hazard simulation (via the InsightX suite), this project brings computer architecture education into the modern development era.
+
+> ⚠️ **Are you facing Java or macOS errors with the original MARS?**
+> The original MARS v4.5 suffers from graphics rendering glitches on macOS and crashes on modern Java runtimes. MARS Studio is rebuilt using Gradle and the FlatLaf layout engine, providing seamless cross-platform performance on Windows, macOS, and Linux, with full support for Java versions 8 through 22+.
 
 ## ✨ Key Features
 
@@ -51,12 +54,15 @@ Beyond the core UI, new plugins have been added to the *Tools* menu:
 
 ---
 
-## 🛠 Prerequisites
+## 🛠 Compatibility & Prerequisites
 
-### 1. Java 8+
-Already required by the base MARS architecture.
+### 1. Java 8 to 22+ (JRE/JDK)
+Fully compatible with modern Java runtimes as well as legacy Java 8 environments.
 
-### 2. MIPS Cross-Compiler
+### 2. Cross-Platform Support
+Runs natively on Windows, Linux, and macOS (fixing the UI freeze and font scaling bugs present in the original MARS emulator).
+
+### 3. MIPS Cross-Compiler
 To use the C-to-MIPS features, you need a cross-compiler installed on your system.
 
 **Linux / WSL:**
