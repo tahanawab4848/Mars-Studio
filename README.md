@@ -1,13 +1,33 @@
 <h1 align="center">MARS Studio</h1>
 
 
+<p align="center">
+  <strong>A modernized, full-stack IDE for MIPS Assembly and Computer Architecture education.</strong>
+</p>
 
 <p align="center">
-  
-  ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg) 
-  
-  <br/>
-  <strong>A modernized, full-stack IDE for MIPS Assembly and Computer Architecture education.</strong>
+  <a href="https://github.com/tahanawab4848/Mars-Studio/actions/workflows/build.yml">
+    <img src="https://github.com/tahanawab4848/Mars-Studio/actions/workflows/build.yml/badge.svg" alt="Build Status" />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" />
+  </a>
+  <a href="https://www.oracle.com/java/">
+    <img src="https://img.shields.io/badge/Java-8%20to%2022%2B-orange.svg" alt="Java Version" />
+  </a>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform Compatibility" />
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/tahanawab4848/Mars-Studio/stargazers">
+    <img src="https://img.shields.io/github/stars/tahanawab4848/Mars-Studio.svg?style=social" alt="GitHub stars" />
+  </a>
+  <a href="https://github.com/tahanawab4848/Mars-Studio/network/members">
+    <img src="https://img.shields.io/github/forks/tahanawab4848/Mars-Studio.svg?style=social" alt="GitHub forks" />
+  </a>
 </p>
 
 ## 🚀 Overview
