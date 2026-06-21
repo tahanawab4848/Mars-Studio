@@ -15,6 +15,7 @@
   <a href="https://www.oracle.com/java/">
     <img src="https://img.shields.io/badge/Java-8%20to%2022%2B-orange.svg" alt="Java Version" />
   </a>
+  <img src="https://img.shields.io/badge/Language-MIPS%20Assembly-yellowgreen.svg" alt="MIPS Assembly" />
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform Compatibility" />
   <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
